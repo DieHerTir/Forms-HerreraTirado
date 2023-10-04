@@ -1,0 +1,63 @@
+<div class="container">
+    <div class="row">
+    
+        <div class="card my-3">
+          <form [formGroup]="miFormulario" class="p-3">
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="inputEmail4">Email</label>
+                <input type="email" class="form-control"   formControlName="email" placeholder="Email">
+                <div *ngIf=" miFormulario?.get('email')?.touched && mostrarErrores && miFormulario?.get('email')?.hasError('required')" class="alert alert-danger">El campo Email es obligatorio.</div>
+                <div *ngIf="miFormulario?.get('email')?.hasError('email')" class="alert alert-danger">El formato del correo electrónico no es válido.</div>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="inputPassword4">Contraseña</label>
+                <input type="password" class="form-control" id="inputPassword4"  formControlName="password" placeholder="Contraseña">
+                <div *ngIf="mostrarErrores && miFormulario?.get('password')?.hasError('required')" class="alert alert-danger">El campo Contraseña es obligatorio.</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputAddress">Dirección</label>
+              <input type="text" class="form-control" id="inputAddress"  formControlName="address" >
+              <div *ngIf="mostrarErrores && miFormulario?.get('address')?.hasError('required')" class="alert alert-danger">El campo Dirección es obligatorio.</div>
+            </div>
+            
+            <div class="row">
+              <div class="form-group col-md-4">
+                <label for="inputCity">RFC</label>
+                <input type="text" class="form-control" formControlName="rfc">
+                <div *ngIf="mostrarErrores && miFormulario?.get('rfc')?.hasError('required')" class="alert alert-danger">El campo RFC es obligatorio.</div>
+                <div *ngIf="miFormulario?.get('rfc')?.touched && miFormulario?.get('rfc')?.hasError('rfcMexico')" class="alert alert-danger">
+                    El RFC no cumple con la estructura básica de México.
+                  </div>
+              </div>
+              <div class="form-group col-md-4">
+                <label for="inputState">Télefono</label>
+                <input type="text" class="form-control"  formControlName="telefono">
+                <div *ngIf="mostrarErrores && miFormulario?.get('telefono')?.hasError('required')" class="alert alert-danger">El campo Télefono es obligatorio.</div>
+                <div *ngIf="miFormulario?.get('telefono')?.touched && miFormulario?.get('telefono')?.hasError('minlength')" class="alert alert-danger">
+                    El teléfono debe tener al menos 10 caracteres.
+                  </div>
+                  
+                  <!-- Mostrar mensaje de error si la longitud es mayor a 10 caracteres -->
+                  <div *ngIf="miFormulario?.get('telefono')?.touched && miFormulario?.get('telefono')?.hasError('maxlength')" class="alert alert-danger">
+                    El teléfono no debe tener más de 10 caracteres.
+                  </div>
+              </div>
+                 <div class="form-group col-md-4">
+                <label for="inputZip">Código postal</label>
+                <input type="text" class="form-control" id="inputZip"  formControlName="zip">
+                <div *ngIf="mostrarErrores && miFormulario?.get('zip')?.hasError('required')" class="alert alert-danger">El campo Código postal es obligatorio.</div>
+                <div *ngIf=" miFormulario?.get('zip')?.touched && miFormulario?.get('zip')?.hasError('codigoPostal')" class="alert alert-danger">
+                    El código postal debe contener exactamente 5 números.
+                  </div>
+              </div>
+            </div>
+            <button  type="button" (click)="enviarFormulario()" class="btn btn-primary my-3">Enviar</button>
+          </form>
+        </div>
+      </div>
+    
+  </div>
+  
+  
